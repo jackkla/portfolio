@@ -1,0 +1,94 @@
+exolve-begin
+  exolve-id: themeless-1
+  exolve-title: Themeless #1
+  exolve-setter: Jack
+  exolve-copyright: Copyright jack, all rights reserved
+  exolve-width: 15
+  exolve-height: 15
+  exolve-grid:
+    A P H A S I A . A S S U R E S
+    R A Y B A N S . R H I Z O M E
+    C U P O L A S . C A R I B O U
+    S L E D S . . P H D . S I T S
+    . . R E A L I T I E S . N E S
+    D I B S . S N A P S A T . . .
+    A D O . P A S S E . B I S O N
+    I L L B I T E . L U L L A B Y
+    S E E Y A . C R A T E . L I E
+    . . . O N S T A G E . A L E S
+    P C T . O L I G O P O L Y . .
+    L U A U . I C E . . A P R I L
+    O R I G A M I . S A S H I M I
+    W I G G L E D . A H E A D O F
+    S E A S I D E . D I S S E N T
+  exolve-across:
+    1 Speech therapy focus (7)
+    8 Gives confidence to (7)
+    15 Designer sunglasses brand (7)
+    16 Rootstalk (7)
+    17 Onion domes (7)
+    18 Most antlered does (7)
+    19 Vehicle for a snow day (5)
+    21 Advanced deg. (3)
+    22 Holds, as a table (4)
+    24 Facts of life (9)
+    26 TV network with a peacock logo (3)
+    27 "I got this!" (4)
+    28 Reacts angrily to (7)
+    31 Fuss (3)
+    32 Outdated (5)
+    33 Shaggy bovine (5)
+    34 "...or else!" (7)
+    36 Sleep aid, maybe (7)
+    38 "Adios" (5)
+    40 Shipping container (5)
+    41 Fib (3)
+    45 Performing (7)
+    48 Pub brews (4)
+    49 Measure of interest, briefly (3)
+    50 When there's only one game in town (9)
+    52 Hawaiian feast (4)
+    53 Diamonds, slangily (3)
+    56 Spring month (5)
+    58 Paper-folding art (7)
+    60 Raw fish dish (7)
+    61 Jiggled (7)
+    62 Beating (7)
+    63 Coastal town (7)
+    64 Opposition (7)
+  exolve-down:
+    1 Character developments (4)
+    2 A thousand times, maybe (6)
+    3 Palabra antes de rojo o verde (3)
+    4 You're callipygian if you have a nice one (4)
+    5 Key chain? (5)
+    6 British honorific (3)
+    7 Richard Grayson alias (6)
+    8 Creator of the word "nerd" (6)
+    9 Sleep tight expression (4,6)
+    10 Exam with a max. score of 180 (4)
+    11 Weasel-like animal known for its brown fur (5)
+    12 Friendly claim (4)
+    13 Not working (2,5)
+    14 Contraction before a deadline (4)
+    20 Cheugy, maybe (5)
+    23 In a joke, what a buffalo says to his child (5)
+    24 Award for some plays (4)
+    25 Hurry up command (4,2,2)
+    29 Give a hoot (4)
+    30 Sign of interest, briefly (3)
+    35 A measurement equivalent to 37 billion disintegrations per second (7)
+    37 The airline industry, for one (9)
+    39 Traditional party setting (4)
+    42 "Wish me luck!" (5,2)
+    43 Art form comprised of notes, perhaps (7)
+    44 Japanese word which literally translates to "pierced body" (7)
+    46 Choice for 61-across (4)
+    47 Go faster command (4,2)
+    51 Winning against (5)
+    54 Winning position (5)
+    55 Bother persistently (3)
+    57 Hissy fit (4)
+    59 Annoy (3)
+exolve-end
+
