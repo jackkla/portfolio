@@ -1,19 +1,31 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+
+  // If on home page, make header transparent/absolute to show background
+  const headerClass = isHome 
+    ? "absolute top-0 left-0 w-full z-20 bg-transparent" 
+    : "bg-white shadow-sm";
+
+  const linkClass = isHome
+    ? "hover:text-white transition-colors text-puzzle-accent drop-shadow-sm" // Updated to #EEF1F5 variable
+    : "hover:text-puzzle-accent transition-colors text-puzzle-text";
+
   return (
-    <header className="bg-white shadow-sm">
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <Link to="/" className="text-2xl font-display font-bold text-puzzle-primary hover:text-puzzle-accent transition-colors">
+    <header className={headerClass}>
+      <div className="container mx-auto px-4 py-6 flex justify-between items-center">
+        <Link to="/" className={`text-2xl font-display font-bold transition-colors ${isHome ? 'text-puzzle-accent drop-shadow-sm' : 'text-puzzle-primary'}`}>
           JK
         </Link>
         <nav>
-          <ul className="flex space-x-6">
-            <li><Link to="/" className="hover:text-puzzle-accent transition-colors">Home</Link></li>
-            <li><Link to="/about" className="hover:text-puzzle-accent transition-colors">About</Link></li>
-            <li><Link to="/puzzles" className="hover:text-puzzle-accent transition-colors">Puzzles</Link></li>
-            <li><Link to="/poetry" className="hover:text-puzzle-accent transition-colors">Poetry</Link></li>
+          <ul className="flex space-x-6 font-bold">
+            <li><Link to="/" className={linkClass}>Home</Link></li>
+            <li><Link to="/about" className={linkClass}>About</Link></li>
+            <li><Link to="/puzzles" className={linkClass}>Puzzles</Link></li>
+            <li><Link to="/poetry" className={linkClass}>Poetry</Link></li>
           </ul>
         </nav>
       </div>
@@ -22,4 +34,3 @@ const Header = () => {
 };
 
 export default Header;
-
