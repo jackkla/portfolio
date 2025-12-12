@@ -5,6 +5,9 @@ import Footer from './components/layout/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import PuzzlesHub from './pages/PuzzlesHub';
+import ConnectionsPage from './pages/ConnectionsPage';
+import CrosswordPage from './pages/CrosswordPage';
+import WordlePage from './pages/WordlePage';
 import Poetry from './pages/Poetry';
 import textureBg from './assets/images/texture_bg.png';
 
@@ -40,6 +43,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/puzzles" element={<PuzzlesHub />} />
+          <Route path="/puzzles/connections/:id" element={<ConnectionsPage />} />
+          <Route path="/puzzles/crossword" element={<CrosswordPage />} />
+          <Route path="/puzzles/wordle" element={<WordlePage />} />
           <Route path="/poetry" element={<Poetry />} />
         </Routes>
       </Layout>
