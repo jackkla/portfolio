@@ -7,14 +7,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        'puzzle-primary': '#D4A373', 
-        'puzzle-accent': '#EEF1F5',  // New Button Color
-        'puzzle-text': '#120F0E',    // New Text Color
+        'puzzle-primary': '#D4A373', // Keep for legacy/accents if needed, but deprioritize
+        'puzzle-accent': '#EEF1F5',
+        'puzzle-text': '#120F0E',
         'puzzle-bg': '#FAF9F6',
+        
+        // Simplified Palette
         'connections-yellow': '#F9DF6D',
-        'connections-green': '#A0C35A',
         'connections-blue': '#B0C4EF',
-        'connections-purple': '#BA81C5',
+        'connections-pink': '#F472B6', // Standardized Pink
       },
       fontFamily: {
         'display': ['Helvetica', 'Arial', 'sans-serif'],

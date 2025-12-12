@@ -6,17 +6,25 @@ import Home from './pages/Home';
 import About from './pages/About';
 import PuzzlesHub from './pages/PuzzlesHub';
 import Poetry from './pages/Poetry';
+import textureBg from './assets/images/texture_bg.png';
 
 const Layout = ({ children }) => {
   const location = useLocation();
   const isHome = location.pathname === '/';
   
   return (
-    // Force full viewport height and prevent scrolling on home
-    <div className={`flex flex-col min-h-screen font-body bg-puzzle-bg text-puzzle-text ${isHome ? 'h-screen overflow-hidden' : 'overflow-x-hidden'}`}>
+    <div 
+      className={`flex flex-col min-h-screen font-body text-puzzle-text ${isHome ? 'h-screen overflow-hidden' : 'overflow-x-hidden'}`}
+      style={!isHome ? {
+        backgroundImage: `url(${textureBg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      } : {}}
+    >
       <Header />
-      {/* Home page takes full height absolute-like positioning, others normal flow */}
-      <main className={isHome ? "h-full w-full" : "flex-grow pt-4"}>
+      {/* Add top padding to account for absolute header on non-home pages */}
+      <main className={isHome ? "h-full w-full" : "flex-grow pt-24"}>
         {children}
       </main>
       {!isHome && <Footer />}
