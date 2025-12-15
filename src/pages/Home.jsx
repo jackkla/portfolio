@@ -1,8 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import bgImage from '../assets/images/abstract-art/fire_collage.png';
+import PuzzleCard from '../components/puzzles/PuzzleCard';
 
 const Home = () => {
+  const [view, setView] = useState('initial'); // 'initial', 'read', 'play'
+
   // Hardcoded Animation Parameters (Locked In)
   const params = {
     hueSpeed: 60,       // 60s
@@ -64,14 +68,45 @@ const Home = () => {
     return () => cancelAnimationFrame(requestRef.current);
   }, []); 
 
+  // Data
+  const puzzles = [
+    {
+      id: 'crossword-1',
+      title: 'Themeless #1',
+      type: 'purple',
+      description: 'A full 15x15 themeless crossword puzzle.',
+      link: '/puzzles/crossword',
+      status: 'Play'
+    },
+    {
+      id: 'connections-hub',
+      title: 'Connections',
+      type: 'yellow',
+      description: 'Find groups of four items that share something in common.',
+      link: '/puzzles/connections/1',
+      status: 'Play'
+    },
+    {
+      id: 'extreme-wordle',
+      title: 'Extreme Wordle',
+      type: 'blue',
+      description: 'A more challenging variant of the popular word game.',
+      link: '/puzzles/extreme-wordle',
+      status: 'WIP'
+    }
+  ];
+
+  const handleSpotifyClick = () => {
+    // Placeholder for actual Spotify interaction or analytics
+  };
+
   return (
-    <div className="fixed inset-0 w-full h-full flex flex-col items-center justify-center overflow-hidden bg-black">
+    <div className="fixed inset-0 w-full h-full overflow-hidden bg-black text-puzzle-accent font-body selection:bg-pink-500 selection:text-white">
       
       {/* Dynamic SVG Filter Definition */}
       <svg className="invisible absolute width-0 height-0">
         <defs>
           <filter id="complexFilter" x="-20%" y="-20%" width="140%" height="140%">
-            {/* 1. Turbulence / Scramble */}
             <feTurbulence 
               ref={turbulenceRef} 
               type="turbulence" 
@@ -88,8 +123,6 @@ const Home = () => {
               yChannelSelector="G"
               result="displaced"
             />
-            
-            {/* 2. RGB Channel Shifting */}
             <feColorMatrix 
                 ref={matrixRef}
                 in="displaced"
@@ -97,8 +130,6 @@ const Home = () => {
                 values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" 
                 result="colored"
             />
-
-            {/* 3. Final Mild Blur Pass */}
             <feGaussianBlur 
                 in="colored" 
                 stdDeviation="0.5" 
@@ -108,9 +139,9 @@ const Home = () => {
         </defs>
       </svg>
 
-      {/* Background Layer (Z-0) */}
+      {/* Background Layer */}
       <div 
-        className="absolute inset-0 z-0 animate-hue-only scale-110"
+        className="absolute inset-0 animate-hue-only scale-110"
         style={{
             '--hue-target': `${params.hueTarget}deg`,
             animationDuration: `${params.hueSpeed}s`,
@@ -128,35 +159,64 @@ const Home = () => {
         />
       </div>
 
-      {/* Content (Z-30) */}
-      <div className="relative z-30 max-w-4xl mx-auto px-4 pt-20 flex flex-col items-center">
+      {/* Content */}
+      <div className="relative w-full h-full flex flex-col items-center pt-20 pb-10">
         
-        {/* Simple Text Container - No Glassmorphism */}
-        <div className="space-y-6 text-center animate-fade-in-up">
-            <h1 className="text-6xl md:text-8xl font-display font-bold text-puzzle-accent tracking-tight drop-shadow-md">
-            Jacob Klausner
+        {/* Name and Toggle */}
+        <div className="flex-shrink-0 text-center space-y-8 pointer-events-none relative">
+            <h1 
+              className="font-black uppercase tracking-tighter cursor-pointer hover:scale-105 transition-transform text-white mix-blend-difference pointer-events-auto leading-none"
+              style={{ fontSize: '13vw' }}
+              onClick={() => setView('initial')}
+            >
+            Jack's Pu<span style={{ marginRight: '3px' }}>z</span>zles
             </h1>
             
-            <p className="text-xl md:text-3xl font-body text-puzzle-accent max-w-2xl mx-auto leading-relaxed font-bold drop-shadow-sm">
-            Word Game Enthusiast & Puzzle Creator
-            </p>
+            <div className="flex justify-center text-2xl font-bold pointer-events-auto">
+              <Link to="/puzzles">
+                  <motion.button 
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="border-4 border-white text-white px-12 py-4 text-4xl font-black uppercase tracking-widest hover:bg-white hover:text-black transition-colors mix-blend-difference"
+                  >
+                    Play
+                  </motion.button>
+              </Link>
+            </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-8 justify-center pt-12 animate-fade-in-up delay-200">
-          <Link 
-            to="/puzzles" 
-            className="text-puzzle-accent text-xl font-bold drop-shadow-md hover:text-white transition-colors"
-          >
-            Play My Puzzles
-          </Link>
-          
-          <Link 
-            to="/about" 
-            className="text-puzzle-accent text-xl font-bold drop-shadow-md hover:text-white transition-colors"
-          >
-            Read About Me
-          </Link>
+        {/* Footer / Socials */}
+        <div className="flex-shrink-0 w-full p-6 flex flex-col items-center gap-6 mt-auto">
+          <div className="flex gap-8 text-xl font-bold tracking-widest uppercase mix-blend-difference">
+            <a 
+              href="https://www.linkedin.com/in/jacob-klausner-377b48219/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-white hover:scale-110 transition-all text-white"
+            >
+              LinkedIn
+            </a>
+            <a 
+              href="https://github.com/jackkla" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-white hover:scale-110 transition-all text-white"
+            >
+              GitHub
+            </a>
+            <a 
+              href="https://open.spotify.com/user/jackkla" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-white hover:scale-110 transition-all text-white"
+            >
+              Spotify
+            </a>
+          </div>
         </div>
+
       </div>
     </div>
   );

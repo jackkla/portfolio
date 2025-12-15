@@ -8,11 +8,15 @@ const CrosswordPage = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    let isMounted = true;
+
     const loadPuzzle = async () => {
       try {
         // Wait for Exolve and the converter to load
         if (!window.Exolve || !window.exolveFromPuz) {
-          setTimeout(loadPuzzle, 100);
+          if (isMounted) {
+            setTimeout(loadPuzzle, 100);
+          }
           return;
         }
 
@@ -24,6 +28,9 @@ const CrosswordPage = () => {
         
         const arrayBuffer = await response.arrayBuffer();
         
+        // If unmounted during fetch, stop here
+        if (!isMounted) return;
+
         // Convert .puz to Exolve format using the official converter
         let exolveSpec = window.exolveFromPuz(arrayBuffer, 'themeless-1.puz');
         
@@ -43,9 +50,11 @@ const CrosswordPage = () => {
         
         setIsLoading(false);
       } catch (err) {
-        console.error('Error loading puzzle:', err);
-        setError(err.message);
-        setIsLoading(false);
+        if (isMounted) {
+          console.error('Error loading puzzle:', err);
+          setError(err.message);
+          setIsLoading(false);
+        }
       }
     };
 
@@ -53,8 +62,10 @@ const CrosswordPage = () => {
 
     // Cleanup on unmount
     return () => {
+      isMounted = false;
       if (puzzleInstanceRef.current && puzzleInstanceRef.current.destroy) {
         puzzleInstanceRef.current.destroy();
+        puzzleInstanceRef.current = null;
       }
     };
   }, []);

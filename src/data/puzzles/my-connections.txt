@@ -1,0 +1,51 @@
+INSTRUCTIONS:
+Use this file to draft your own Connections puzzles. 
+Copy and paste the template below for each new puzzle you want to add.
+When you are done, you can ask me to "convert my connections text file to the game format".
+
+=========================================
+PUZZLE TEMPLATE
+=========================================
+
+Title: [Your Puzzle Title, e.g., "My First Puzzle"]
+Description: [Brief description, e.g., "A tricky one about food"]
+
+Group Yellow (Easiest):
+Category: [e.g., TYPES OF FRUIT]
+Words: [WORD1], [WORD2], [WORD3], [WORD4]
+
+Group Green (Medium):
+Category: [e.g., GREEN ___]
+Words: [WORD1], [WORD2], [WORD3], [WORD4]
+
+Group Blue (Hard):
+Category: [e.g., THINGS WITH TEETH]
+Words: [WORD1], [WORD2], [WORD3], [WORD4]
+
+Group Purple (Hardest):
+Category: [e.g., WORDS SPELLED WITH NUMBERS]
+Words: [WORD1], [WORD2], [WORD3], [WORD4]
+
+=========================================
+EXAMPLE
+=========================================
+
+Title: Kitchen Sink
+Description: Everything but the...
+
+Group Yellow (Easiest):
+Category: UTENSILS
+Words: FORK, SPOON, KNIFE, SPATULA
+
+Group Green (Medium):
+Category: SINKS
+Words: VESSEL, BASIN, DRAIN, FAUCET
+
+Group Blue (Hard):
+Category: KITCHEN APPLIANCES
+Words: OVEN, FRIDGE, TOASTER, BLENDER
+
+Group Purple (Hardest):
+Category: RHYMES WITH SINK
+Words: LINK, PINK, DRINK, THINK
+

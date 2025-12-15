@@ -1,14 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Home from './pages/Home';
-import About from './pages/About';
 import PuzzlesHub from './pages/PuzzlesHub';
 import ConnectionsPage from './pages/ConnectionsPage';
 import CrosswordPage from './pages/CrosswordPage';
 import WordlePage from './pages/WordlePage';
-import Poetry from './pages/Poetry';
 import textureBg from './assets/images/texture_bg.png';
 
 const Layout = ({ children }) => {
@@ -25,9 +22,7 @@ const Layout = ({ children }) => {
         backgroundAttachment: 'fixed'
       } : {}}
     >
-      <Header />
-      {/* Add top padding to account for absolute header on non-home pages */}
-      <main className={isHome ? "h-full w-full" : "flex-grow pt-24"}>
+      <main className={isHome ? "h-full w-full" : "flex-grow pt-8"}>
         {children}
       </main>
       {!isHome && <Footer />}
@@ -41,12 +36,10 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
           <Route path="/puzzles" element={<PuzzlesHub />} />
           <Route path="/puzzles/connections/:id" element={<ConnectionsPage />} />
           <Route path="/puzzles/crossword" element={<CrosswordPage />} />
-          <Route path="/puzzles/wordle" element={<WordlePage />} />
-          <Route path="/poetry" element={<Poetry />} />
+          <Route path="/puzzles/extreme-wordle" element={<WordlePage />} />
         </Routes>
       </Layout>
     </Router>
