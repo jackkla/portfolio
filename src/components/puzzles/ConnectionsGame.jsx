@@ -19,8 +19,7 @@ const ConnectionsGame = ({ puzzle, onComplete }) => {
   const [gameStatus, setGameStatus] = useState('playing'); // playing, won, lost
   const [feedback, setFeedback] = useState('');
 
-  // Initialize game
-  useEffect(() => {
+  const initializeGame = () => {
     if (puzzle) {
       const allWords = puzzle.groups.flatMap(group => 
         group.words.map(word => ({ word, group: group.name, color: group.color }))
@@ -31,7 +30,27 @@ const ConnectionsGame = ({ puzzle, onComplete }) => {
       setGameStatus('playing');
       setSelectedWords([]);
     }
+  };
+
+  // Initialize game
+  useEffect(() => {
+    initializeGame();
   }, [puzzle]);
+
+  const handleRetry = () => {
+    initializeGame();
+  };
+
+  const handleShowAnswers = () => {
+    setSolvedGroups(puzzle.groups);
+    setWords([]);
+  };
+
+  useEffect(() => {
+    if (mistakes >= 4) {
+      setGameStatus('lost');
+    }
+  }, [mistakes]);
 
   const handleWordClick = (wordObj) => {
     if (gameStatus !== 'playing') return;
@@ -48,6 +67,7 @@ const ConnectionsGame = ({ puzzle, onComplete }) => {
   };
 
   const handleSubmit = () => {
+    if (gameStatus !== 'playing') return;
     if (selectedWords.length !== 4) return;
 
     // Check if words match any group
@@ -83,13 +103,7 @@ const ConnectionsGame = ({ puzzle, onComplete }) => {
       });
       const isOneAway = Object.values(counts).includes(3);
 
-      setMistakes(prev => {
-        const newMistakes = prev + 1;
-        if (newMistakes >= 4) {
-          setGameStatus('lost');
-        }
-        return newMistakes;
-      });
+      setMistakes(prev => prev + 1);
 
       setFeedback(isOneAway ? "One away!" : "Incorrect group.");
       
@@ -166,7 +180,7 @@ const ConnectionsGame = ({ puzzle, onComplete }) => {
           <div className="flex justify-center items-center gap-2 mb-4">
             <span className="font-bold">Mistakes remaining:</span>
             <div className="flex gap-1">
-              {[...Array(4 - mistakes)].map((_, i) => (
+              {[...Array(Math.max(0, 4 - mistakes))].map((_, i) => (
                 <div key={i} className="w-3 h-3 rounded-full bg-gray-800" />
               ))}
             </div>
@@ -204,7 +218,14 @@ const ConnectionsGame = ({ puzzle, onComplete }) => {
         <div className="text-center p-8">
           <h2 className="text-3xl font-bold mb-2">Game Over</h2>
           <p>Better luck next time.</p>
-          <button onClick={() => window.location.reload()} className="mt-4 px-6 py-2 bg-black text-white rounded-full">Retry</button>
+          <div className="flex justify-center gap-4 mt-4">
+            <button onClick={handleRetry} className="px-6 py-2 bg-black text-white rounded-full">Retry</button>
+            {words.length > 0 && (
+              <button onClick={handleShowAnswers} className="px-6 py-2 border border-gray-300 text-gray-800 hover:bg-gray-50 rounded-full">
+                See Answers
+              </button>
+            )}
+          </div>
         </div>
       )}
     </div>
